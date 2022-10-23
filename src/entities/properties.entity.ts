@@ -11,7 +11,7 @@ import {
 } from "typeorm";
 import { Addressses } from "./addresses.entity";
 import { Categories } from "./categories.entity";
-import { SchedulesUserProperties } from "./schedulesUserProperties.entity";
+import { Schedules } from "./schedulesUserProperties.entity";
 
 @Entity("Properties")
 export class Properties {
@@ -33,20 +33,15 @@ export class Properties {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Addressses, Addressses=> Addressses.property, {
+  @OneToOne(() => Addressses, (Addressses) => Addressses.property, {
     eager: true,
   })
   @JoinColumn()
   address: Addressses;
 
-  @OneToMany(
-    () => SchedulesUserProperties,
-    (SchedulesUserProperties) => SchedulesUserProperties.Properties
-  )
-  PropertiesList: Properties[];
+  @OneToMany(() => Schedules, (Schedules) => Schedules.property)
+  schedules: Schedules[];
 
-  @ManyToOne(() => Categories, (Categories) => Categories.properties)
+  @ManyToOne(() => Categories, (Categories) => Categories)
   category: Categories;
-
-  
 }

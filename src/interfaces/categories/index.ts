@@ -1,6 +1,6 @@
 export interface ICategoryRequest {
-    name: string
+  name: string;
 }
-export interface ICategoryLisPropeties{
-    id: string
+export interface ICategoryLisPropeties {
+  id: string;
 }

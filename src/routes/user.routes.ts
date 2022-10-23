@@ -11,7 +11,12 @@ const routes = Router();
 
 routes.post("/users", userCreateController);
 routes.get("/users", verifyIsAdmMiddleware, usersListcontroller);
-routes.delete("/users/:id", verifyIsAdmMiddleware,softDeleteController);
-routes.patch("/users/:id",verifyUpdateMiddleware,verifyDataCannotBeUpdatedMiddleware, userUpdateController);
+routes.delete("/users/:id", verifyIsAdmMiddleware, softDeleteController);
+routes.patch(
+  "/users/:id",
+  verifyUpdateMiddleware,
+  verifyDataCannotBeUpdatedMiddleware,
+  userUpdateController
+);
 
 export default routes;

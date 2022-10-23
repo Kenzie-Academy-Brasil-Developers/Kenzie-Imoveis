@@ -10,17 +10,17 @@ import { Properties } from "./properties.entity";
 import { User } from "./user.entity";
 
 @Entity("schedules_user_properties")
-export class SchedulesUserProperties {
+export class Schedules {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  @CreateDateColumn()
-  date: Date;
+  @Column({ type: "date" })
+  date: string;
   @Column({ type: "time" })
-  hour: Date;
+  hour: string;
 
-  @ManyToOne(() => Properties)
-  Properties: Properties;
+  @ManyToOne(() => Properties, (property) => property.schedules)
+  property: Properties;
 
-  @ManyToOne(() => User)
-  User: User;
+  @ManyToOne(() => User, (user) => user.schedules)
+  user: User;
 }

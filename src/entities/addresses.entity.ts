@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Properties } from "./properties.entity";
 
 @Entity("Addressses")
@@ -9,7 +15,7 @@ export class Addressses {
   @Column()
   district: string;
 
-  @Column({length:8})
+  @Column({ length: 8 })
   zipCode: string;
 
   @Column()
@@ -18,10 +24,10 @@ export class Addressses {
   @Column()
   city: string;
 
-  @Column({length:2})
+  @Column({ length: 2 })
   state: string;
 
-  @OneToOne(() => Properties,Properties=> Properties.address)
+  @OneToOne(() => Properties, (Properties) => Properties.address)
   @JoinColumn()
-  property:Properties
+  property: Properties;
 }

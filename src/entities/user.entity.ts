@@ -1,34 +1,40 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, OneToMany} from "typeorm";
-import {Exclude} from "class-transformer"
-import { SchedulesUserProperties } from "./schedulesUserProperties.entity";
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  OneToMany,
+} from "typeorm";
+import { Exclude } from "class-transformer";
+import { Schedules } from "./schedulesUserProperties.entity";
 
 @Entity("User")
-export class User { 
+export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({length:60 } )
+  @Column({ length: 60 })
   name: string;
 
-  @Column({length:60, unique:true})
+  @Column({ length: 60, unique: true })
   email: string;
-  
-  @Column({length:60})
+
+  @Column({ length: 60 })
   @Exclude()
-  password:string;
+  password: string;
 
   @Column()
-  isAdm:boolean
+  isAdm: boolean;
 
-  @Column({default: true})
-  isActive:boolean
-
-  @CreateDateColumn()
-  createdAt:Date
+  @Column({ default: true })
+  isActive: boolean;
 
   @CreateDateColumn()
-  updatedAt:Date
+  createdAt: Date;
 
-  @OneToMany(()=>SchedulesUserProperties, SchedulesUserProperties => SchedulesUserProperties.User)
-   ScheduleUserPropertiesList: SchedulesUserProperties[]
+  @CreateDateColumn()
+  updatedAt: Date;
+
+  @OneToMany(() => Schedules, (schedules) => schedules.user)
+  schedules: Schedules[];
 }

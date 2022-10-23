@@ -3,19 +3,21 @@ import { Categories } from "../entities/categories.entity";
 import { AppError } from "../errors/appError";
 import { ICategoryLisPropeties } from "../interfaces/categories";
 
-const listPropertiesOfCategoryService = async ({id}:ICategoryLisPropeties)=>{
+const listPropertiesOfCategoryService = async ({
+  id,
+}: ICategoryLisPropeties) => {
   const categoryRepository = AppDataSource.getRepository(Categories);
   const categoryExists = await categoryRepository.findOne({
     where: {
       id,
     },
     relations: {
-      properties:true
+      properties: true,
     },
   });
-  if(!categoryExists){
+  if (!categoryExists) {
     throw new AppError(404, "Category not found");
   }
-  return categoryExists
-}
-export default listPropertiesOfCategoryService
+  return categoryExists;
+};
+export default listPropertiesOfCategoryService;

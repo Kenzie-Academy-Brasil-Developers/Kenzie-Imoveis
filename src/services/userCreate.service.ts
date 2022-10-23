@@ -2,7 +2,7 @@ import AppDataSource from "../data-source";
 import { User } from "../entities/user.entity";
 import { IUserRequest } from "../interfaces/users";
 import { v4 as uuid } from "uuid";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 import { AppError } from "../errors/appError";
 const userCreateService = async ({
   name,
@@ -15,12 +15,12 @@ const userCreateService = async ({
   const emailAlreadyExists = users.find((user) => user.email === email);
 
   if (emailAlreadyExists) {
-    throw new AppError(400,"Email Already Exists");
+    throw new AppError(400, "Email Already Exists");
   }
   const user = new User();
   user.name = name;
   user.email = email;
-  user.password = bcrypt.hashSync(password,10);
+  user.password = bcrypt.hashSync(password, 10);
   user.isAdm = isAdm;
   user.isActive = true;
   user.createdAt = new Date();
@@ -28,7 +28,7 @@ const userCreateService = async ({
   user.id = uuid();
   userRepository.create(user);
   await userRepository.save(user);
-  const newUser= {...user, password:undefined}
+  const newUser = { ...user, password: undefined };
   return newUser;
 };
 

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, response } from "express";
 import jwt from "jsonwebtoken";
 import { AppError } from "../errors/appError";
 
-const verifyIsAdmMiddleware = (
+const authTokenMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -16,10 +16,7 @@ const verifyIsAdmMiddleware = (
     if (!decoded) {
       throw new AppError(403, "Invalid Token");
     }
-    if (!(<any>decoded).isAdm) {
-      throw new AppError(403, "Unouthorized");
-    }
     next();
   });
 };
-export default verifyIsAdmMiddleware;
+export default authTokenMiddleware;

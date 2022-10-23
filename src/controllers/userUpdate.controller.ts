@@ -8,7 +8,7 @@ const userUpdateController: RequestHandler = async (req, res) => {
     const { id } = req.params;
     const { name, email, password }: IUserUpdate = req.body;
     const user = await userUpdateService(id, { name, email, password });
-    return res.status(200).json({message: "User Updated"});
+    return res.status(200).json({ message: "User Updated" });
   } catch (error) {
     if (error instanceof AppError) {
       return res.status(error.statusCode).json({

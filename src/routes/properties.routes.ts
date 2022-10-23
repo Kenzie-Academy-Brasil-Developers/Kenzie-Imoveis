@@ -3,9 +3,13 @@ import propertiesListcontroller from "../controllers/listProperties.controller";
 import propertiesCreateController from "../controllers/propertiesCreate.controller";
 import verifyIsAdmMiddleware from "../middlewares/verifyAuth.middleware";
 
-const propertiesRoutes = Router()
+const propertiesRoutes = Router();
 
-propertiesRoutes.post("/properties",verifyIsAdmMiddleware,propertiesCreateController)//cadastra um imovel
-propertiesRoutes.get("/properties",propertiesListcontroller)//lista todos imoveis
+propertiesRoutes.post(
+  "/properties",
+  verifyIsAdmMiddleware,
+  propertiesCreateController
+); //cadastra um imovel
+propertiesRoutes.get("/properties", propertiesListcontroller); //lista todos imoveis
 
-export default propertiesRoutes
+export default propertiesRoutes;
