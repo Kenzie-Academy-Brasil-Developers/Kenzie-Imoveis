@@ -2,7 +2,7 @@ import AppDataSource from "../data-source";
 import { User } from "../entities/user.entity";
 import { IUserRequest } from "../interfaces/users";
 import { v4 as uuid } from "uuid";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import { AppError } from "../errors/appError";
 const userCreateService = async ({
   name,

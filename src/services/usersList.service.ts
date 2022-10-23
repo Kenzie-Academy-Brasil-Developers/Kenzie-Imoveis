@@ -9,12 +9,11 @@ interface INewArray {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date
-
 }
 
 const userListService = async ()=>{
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.find();
-  return users
+  return users.map((user) => ({...user, password:undefined}));
 }
 export default userListService

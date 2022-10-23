@@ -5,9 +5,8 @@ import listPropertiesOfCategoryController from "../controllers/listPropertiesOfC
 import verifyIsAdmMiddleware from "../middlewares/verifyAuth.middleware";
 
 const categoriesRoutes= Router()
-categoriesRoutes.post("/categories",verifyIsAdmMiddleware,CreateCategoryController);//cria categoria
-categoriesRoutes.get("/categories",categoryListcontroller);//lista as categorias
+categoriesRoutes.post("/categories",verifyIsAdmMiddleware,CreateCategoryController);
+categoriesRoutes.get("/categories",categoryListcontroller);
 
-categoriesRoutes.get("/categories/:id/properties",listPropertiesOfCategoryController);//lista todos imoveis que pertecem a uma categoria
-
+categoriesRoutes.get("/categories/:id/properties",listPropertiesOfCategoryController);
 export default categoriesRoutes
